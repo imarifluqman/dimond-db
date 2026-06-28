@@ -1,0 +1,46 @@
+{
+  "name": "dimond-db",
+  "version": "1.0.0",
+  "description": "A lightweight embedded database engine for Node.js with MongoDB-like API. No external database server required.",
+  "main": "src/index.js",
+  "type": "module",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "test": "node --test tests/",
+    "test:watch": "node --test --watch tests/",
+    "demo": "node demo.js",
+    "prepublishOnly": "npm test"
+  },
+  "keywords": [
+    "database",
+    "embedded",
+    "local",
+    "mongodb",
+    "nosql",
+    "storage",
+    "lightweight",
+    "offline",
+    "filesystem",
+    "json",
+    "query",
+    "document-database",
+    "node-database"
+  ],
+  "files": [
+    "src/",
+    "README.md",
+    "LICENSE"
+  ],
+  "author": "LocalDB Contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imarifluqman/dimond-db"
+  },
+  "bugs": {
+    "url": "https://github.com/imarifluqman/dimond-db/issues"
+  },
+  "homepage": "https://github.com/imarifluqman/dimond-db#readme"
+}

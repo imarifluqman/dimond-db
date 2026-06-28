@@ -1,0 +1,19 @@
+# Exclude test files and demos from npm package
+tests/
+test-database/
+database/
+demo.js
+
+# Development files
+.gitignore
+*.test.js
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.github/
