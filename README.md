@@ -1,4 +1,4 @@
-# LocalDB JS
+# Dimond db
 
 A lightweight embedded database engine for Node.js with a MongoDB-like API. No external database server required.
 
@@ -23,21 +23,21 @@ npm install dimond-db
 ## 🎯 Quick Start
 
 ```javascript
-import { LocalDB } from 'dimond-db';
+import { LocalDB } from "dimond-db";
 
 // Create database instance
 const db = new LocalDB({
-    database: 'myDatabase'
+  database: "myDatabase",
 });
 
 // Get a collection
-const users = db.collection('users');
+const users = db.collection("users");
 
 // Insert a document
 await users.insertOne({
-    name: 'Arif',
-    age: 22,
-    email: 'arif@example.com'
+  name: "Arif",
+  age: 22,
+  email: "arif@example.com",
 });
 
 // Find documents
@@ -57,8 +57,8 @@ console.log(adults);
 
 ```javascript
 const db = new LocalDB({
-    database: 'databaseName',  // required
-    path: './database'          // optional, defaults to './database'
+  database: "databaseName", // required
+  path: "./database", // optional, defaults to './database'
 });
 ```
 
@@ -75,19 +75,21 @@ const db = new LocalDB({
 #### Insert Operations
 
 **insertOne(document)**
+
 ```javascript
 const result = await users.insertOne({
-    name: 'Ali',
-    age: 25
+  name: "Ali",
+  age: 25,
 });
 // Returns: { acknowledged: true, insertedId: 'generated-uuid' }
 ```
 
 **insertMany(documents)**
+
 ```javascript
 const result = await users.insertMany([
-    { name: 'Sara', age: 28 },
-    { name: 'Ahmed', age: 30 }
+  { name: "Sara", age: 28 },
+  { name: "Ahmed", age: 30 },
 ]);
 // Returns: { acknowledged: true, insertedCount: 2, insertedIds: [...] }
 ```
@@ -95,6 +97,7 @@ const result = await users.insertMany([
 #### Find Operations
 
 **find(filter)**
+
 ```javascript
 // Find all
 const all = await users.find();
@@ -104,45 +107,44 @@ const adults = await users.find({ age: { $gte: 18 } });
 
 // Find with multiple conditions
 const result = await users.find({
-    age: { $gte: 18, $lt: 65 },
-    status: 'active'
+  age: { $gte: 18, $lt: 65 },
+  status: "active",
 });
 ```
 
 **findOne(filter)**
+
 ```javascript
-const user = await users.findOne({ name: 'Arif' });
+const user = await users.findOne({ name: "Arif" });
 // Returns: document or null
 ```
 
 #### Update Operations
 
 **updateOne(filter, update)**
+
 ```javascript
-await users.updateOne(
-    { name: 'Arif' },
-    { $set: { age: 23, city: 'Karachi' } }
-);
+await users.updateOne({ name: "Arif" }, { $set: { age: 23, city: "Karachi" } });
 // Returns: { acknowledged: true, matchedCount: 1, modifiedCount: 1 }
 ```
 
 **updateMany(filter, update)**
+
 ```javascript
-await users.updateMany(
-    { status: 'inactive' },
-    { $set: { status: 'active' } }
-);
+await users.updateMany({ status: "inactive" }, { $set: { status: "active" } });
 ```
 
 #### Delete Operations
 
 **deleteOne(filter)**
+
 ```javascript
-await users.deleteOne({ name: 'Arif' });
+await users.deleteOne({ name: "Arif" });
 // Returns: { acknowledged: true, deletedCount: 1 }
 ```
 
 **deleteMany(filter)**
+
 ```javascript
 await users.deleteMany({ age: { $lt: 18 } });
 ```
@@ -150,11 +152,13 @@ await users.deleteMany({ age: { $lt: 18 } });
 #### Other Operations
 
 **countDocuments(filter)**
+
 ```javascript
 const count = await users.countDocuments({ age: { $gte: 18 } });
 ```
 
 **drop()**
+
 ```javascript
 await users.drop();
 ```
@@ -163,76 +167,68 @@ await users.drop();
 
 ### Comparison Operators
 
-| Operator | Description | Example |
-|----------|-------------|---------|
-| `$eq` | Equal to | `{ age: { $eq: 25 } }` |
-| `$ne` | Not equal to | `{ status: { $ne: 'inactive' } }` |
-| `$gt` | Greater than | `{ age: { $gt: 18 } }` |
-| `$gte` | Greater than or equal | `{ age: { $gte: 18 } }` |
-| `$lt` | Less than | `{ age: { $lt: 65 } }` |
-| `$lte` | Less than or equal | `{ age: { $lte: 65 } }` |
-| `$in` | In array | `{ status: { $in: ['active', 'pending'] } }` |
-| `$nin` | Not in array | `{ status: { $nin: ['banned', 'deleted'] } }` |
-| `$exists` | Field exists | `{ email: { $exists: true } }` |
+| Operator  | Description           | Example                                       |
+| --------- | --------------------- | --------------------------------------------- |
+| `$eq`     | Equal to              | `{ age: { $eq: 25 } }`                        |
+| `$ne`     | Not equal to          | `{ status: { $ne: 'inactive' } }`             |
+| `$gt`     | Greater than          | `{ age: { $gt: 18 } }`                        |
+| `$gte`    | Greater than or equal | `{ age: { $gte: 18 } }`                       |
+| `$lt`     | Less than             | `{ age: { $lt: 65 } }`                        |
+| `$lte`    | Less than or equal    | `{ age: { $lte: 65 } }`                       |
+| `$in`     | In array              | `{ status: { $in: ['active', 'pending'] } }`  |
+| `$nin`    | Not in array          | `{ status: { $nin: ['banned', 'deleted'] } }` |
+| `$exists` | Field exists          | `{ email: { $exists: true } }`                |
 
 ### Logical Operators
 
 **$and**
+
 ```javascript
 await users.find({
-    $and: [
-        { age: { $gte: 18 } },
-        { age: { $lte: 65 } }
-    ]
+  $and: [{ age: { $gte: 18 } }, { age: { $lte: 65 } }],
 });
 ```
 
 **$or**
+
 ```javascript
 await users.find({
-    $or: [
-        { status: 'premium' },
-        { age: { $gte: 65 } }
-    ]
+  $or: [{ status: "premium" }, { age: { $gte: 65 } }],
 });
 ```
 
 ## 🔧 Update Operators
 
 ### $set
+
 Set field values
+
 ```javascript
-await users.updateOne(
-    { name: 'Arif' },
-    { $set: { age: 23, city: 'Karachi' } }
-);
+await users.updateOne({ name: "Arif" }, { $set: { age: 23, city: "Karachi" } });
 ```
 
 ### $unset
+
 Remove fields
+
 ```javascript
-await users.updateOne(
-    { name: 'Arif' },
-    { $unset: { tempField: '' } }
-);
+await users.updateOne({ name: "Arif" }, { $unset: { tempField: "" } });
 ```
 
 ### $inc
+
 Increment numeric values
+
 ```javascript
-await users.updateOne(
-    { name: 'Arif' },
-    { $inc: { loginCount: 1 } }
-);
+await users.updateOne({ name: "Arif" }, { $inc: { loginCount: 1 } });
 ```
 
 ### $push
+
 Add to array
+
 ```javascript
-await users.updateOne(
-    { name: 'Arif' },
-    { $push: { tags: 'developer' } }
-);
+await users.updateOne({ name: "Arif" }, { $push: { tags: "developer" } });
 ```
 
 ## 📁 Storage Structure
@@ -255,33 +251,30 @@ Each collection is stored as a JSON file with automatic persistence.
 ## 🎨 Complete Example
 
 ```javascript
-import { LocalDB } from 'dimond-db';
+import { LocalDB } from "dimond-db";
 
-const db = new LocalDB({ database: 'shop' });
-const products = db.collection('products');
+const db = new LocalDB({ database: "shop" });
+const products = db.collection("products");
 
 // Insert products
 await products.insertMany([
-    { name: 'Laptop', price: 999, category: 'electronics', stock: 50 },
-    { name: 'Mouse', price: 25, category: 'electronics', stock: 200 },
-    { name: 'Desk', price: 300, category: 'furniture', stock: 30 }
+  { name: "Laptop", price: 999, category: "electronics", stock: 50 },
+  { name: "Mouse", price: 25, category: "electronics", stock: 200 },
+  { name: "Desk", price: 300, category: "furniture", stock: 30 },
 ]);
 
 // Find expensive products
 const expensive = await products.find({
-    price: { $gte: 500 }
+  price: { $gte: 500 },
 });
 
 // Update stock
-await products.updateOne(
-    { name: 'Laptop' },
-    { $inc: { stock: -1 } }
-);
+await products.updateOne({ name: "Laptop" }, { $inc: { stock: -1 } });
 
 // Find by category
 const electronics = await products.find({
-    category: 'electronics',
-    stock: { $gt: 0 }
+  category: "electronics",
+  stock: { $gt: 0 },
 });
 
 // Count products
@@ -297,20 +290,20 @@ console.log(stats);
 LocalDB provides specific error types for better error handling:
 
 ```javascript
-import { 
-    LocalDB,
-    DuplicateKeyError,
-    ValidationError,
-    QueryError,
-    StorageError
-} from 'dimond-db';
+import {
+  LocalDB,
+  DuplicateKeyError,
+  ValidationError,
+  QueryError,
+  StorageError,
+} from "dimond-db";
 
 try {
-    await users.insertOne({ _id: 'duplicate-id' });
+  await users.insertOne({ _id: "duplicate-id" });
 } catch (error) {
-    if (error instanceof DuplicateKeyError) {
-        console.log('Document with this ID already exists');
-    }
+  if (error instanceof DuplicateKeyError) {
+    console.log("Document with this ID already exists");
+  }
 }
 ```
 
@@ -324,6 +317,7 @@ try {
 ## 🔐 Data Validation
 
 LocalDB validates:
+
 - Document structure (must be objects, not arrays or primitives)
 - Duplicate `_id` values
 - Query syntax
@@ -338,6 +332,7 @@ LocalDB validates:
 ## 🗺️ Roadmap
 
 Future versions may include:
+
 - Indexing for faster queries
 - Transactions
 - Aggregation pipeline
