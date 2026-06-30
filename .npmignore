@@ -3,6 +3,7 @@ tests/
 test-database/
 database/
 demo.js
+NPM_DEPLOYMENT.md
 
 # Development files
 .gitignore

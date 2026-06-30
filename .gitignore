@@ -1,5 +1,6 @@
 # Dependencies
 node_modules/
+NPM_DEPLOYMENT.md
 
 # Test databases
 test-database/
