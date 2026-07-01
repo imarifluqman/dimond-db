@@ -8,7 +8,7 @@ Dimond-DB (LocalDB) is a lightweight embedded database engine for Node.js with a
 
 **Key characteristics:**
 - ES Modules only (`"type": "module"` in package.json)
-- Node.js >= 14.0.0 required
+- Node.js >= 18.0.0 required (for native test runner support)
 - Zero external dependencies
 - MongoDB-compatible query syntax
 
