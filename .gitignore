@@ -4,7 +4,7 @@ NPM_DEPLOYMENT.md
 
 # Test databases
 test-database/
-database/
+/database/
 
 # Test coverage
 coverage/
