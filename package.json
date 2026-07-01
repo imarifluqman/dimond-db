@@ -1,7 +1,7 @@
 {
   "name": "dimond-db",
-  "version": "1.0.0",
-  "description": "A lightweight embedded database engine for Node.js with MongoDB-like API. No external database server required.",
+  "version": "2.0.0",
+  "description": "A high-performance embedded database engine for Node.js with MongoDB-like API, advanced indexing, transactions, and caching. No external database server required.",
   "main": "src/index.js",
   "type": "module",
   "engines": {
@@ -26,10 +26,20 @@
     "json",
     "query",
     "document-database",
-    "node-database"
+    "node-database",
+    "indexing",
+    "transactions",
+    "caching",
+    "cursor",
+    "schema-validation",
+    "hooks",
+    "middleware",
+    "acid",
+    "wal"
   ],
   "files": [
     "src/",
+    "docs/",
     "README.md",
     "LICENSE"
   ],
